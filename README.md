@@ -3,11 +3,71 @@
 
 HPF Matrix Factorizations for companion recommendation.
 
+## Index:
+* [Supported Ecosytems](#supported-ecosytems)
+* [Build Upon](#build-upon)
+* [Sample Request](#sample-request)
+* [Sample Response](#sample-response)
+* [Deploy Locally](#to-run-locally-via-docker-compose)
+* [Deploy on DevCluster](#to-run-on-dev-cluster)
+* [Run Unit Tests](#unit-tests)
+* [Run Load Tests](#to-run-load-testing-for-recommendation-api)
+* [Footnotes](#footnotes)
+    * [Coding Standards](#coding-standards)
+    * [Code Complexity Measurement](#code-complexity-measurement)
+    * [Additional links](#additional-links)
+
+
 ## Supported ecosystems:
 * Maven
 
 ## Build upon:
 * https://github.com/arindamsarkar93/hcpf
+
+## Sample Request
+```
+Endpoint: /api/v1/companion_recommendation
+Method: POST
+Content-type: application/json
+Body:
+```
+```JSON
+[
+    {
+        "ecosystem": "maven",
+        "package_list": ["io.vertx:vertx-core"]
+
+    }
+]
+```
+
+## Sample Response
+```
+Content-type: application/json
+```
+```JSON
+[
+    {
+        "companion_packages": [
+            {
+                "cooccurrence_probability": 37.5,
+                "package_name": "org.apache.activemq:activemq-kahadb-store",
+                "topic_list": []
+            },
+            {
+                "cooccurrence_probability": 71.875,
+                "package_name": "io.airlift:bootstrap",
+                "topic_list": []
+            }
+        ],
+        "ecosystem": "maven",
+        "missing_packages": [],
+        "package_to_topic_dict": {
+            "io.vertx:vertx-core": []
+        }
+    }
+]
+```
 
 ## To run locally via docker-compose:
 
@@ -31,6 +91,13 @@ HPF Matrix Factorizations for companion recommendation.
 * Go your Openshift console and expose the route
 * `curl <route_URL>` should return `status:ok`
 
+## Unit Tests
+There's a script named `runtests.sh` that can be used to run all unit tests. The unit test coverage is reported as well by this script.
+
+Usage:
+```
+./runtests.sh
+```
 
 ## To run load testing for recommendation API:
 
@@ -66,7 +133,7 @@ The first script measures cyclomatic complexity of all Python sources found in t
 
 The second script measures maintainability index of all Python sources found in the repository. Please see [the following link](https://radon.readthedocs.io/en/latest/commandline.html#the-mi-command) with explanation of this measurement.
 
-### Additional links:
+#### Additional links:
 * [Pushing Image to Docker Hub](https://ropenscilabs.github.io/r-docker-tutorial/04-Dockerhub.html)
 * [PAPER: Scalable Recommendation with Poisson Factorization](https://arxiv.org/abs/1311.1704)
 * [PAPER: Hierarchical Compound Poisson Factorization](https://arxiv.org/abs/1604.03853)

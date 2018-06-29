@@ -31,3 +31,6 @@ c_c = 0.5
 K = 10
 b_c = 0.99
 d_c = 0.99
+
+SWAGGER_YAML_PATH = 'swagger/swagger.yaml'
+

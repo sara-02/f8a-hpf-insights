@@ -10,3 +10,4 @@ gevent
 gunicorn
 scipy
 awscli
+connexion
